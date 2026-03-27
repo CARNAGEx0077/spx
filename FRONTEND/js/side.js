@@ -1,6 +1,6 @@
 const teamsList = document.getElementById("teamsList");
 
-const API_URL = "http://127.0.0.1:5000/side";
+const API_URL = "https://spx-data.onrender.com/side";
 
 // 🧠 Previous state (RAW)
 let previousData = [];

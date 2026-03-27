@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:5000/overall";
+const API = "https://spx-data.onrender.com/overall";
 
 async function loadOverall() {
     try {
