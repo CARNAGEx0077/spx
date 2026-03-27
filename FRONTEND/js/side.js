@@ -26,42 +26,47 @@ function processQueue() {
 
     isShowing = true;
 
-    const teamName = wipeQueue.shift();
-    showWipeCard(teamName);
+    const event = wipeQueue.shift();
+    showWipeCard(event.name, event.placement);
 }
 
 
 // 🔥 SHOW WIPE CARD
-function showWipeCard(teamName) {
+function showWipeCard(teamName, placement) {
     const card = document.getElementById("wipeCard");
     const name = document.getElementById("wipeTeamName");
+    const placementEl = document.querySelector(".wipe-placement span");
+    const logo = document.getElementById("wipeLogo");
 
-    if (!card || !name) return;
+    if (!card || !name || !placementEl || !logo) return;
 
     name.innerText = teamName;
+    placementEl.innerText = `#${placement}`;
 
-    // 🔥 ENTER ANIMATION
+    // 🔥 SET TEAM LOGO
+    logo.src = `images/${teamName}.png`;
+    logo.onerror = () => {
+        logo.src = "images/default.png";
+    };
+
+    // 🔥 ENTER
     card.classList.remove("hidden");
     card.classList.add("show");
 
-    // 🔥 HOLD TIME (main visible duration)
     setTimeout(() => {
 
-        // 🔥 EXIT ANIMATION
+        // 🔥 EXIT
         card.classList.remove("show");
 
-        // wait for animation to finish before fully hiding
         setTimeout(() => {
             card.classList.add("hidden");
 
             isShowing = false;
-
-            // process next event AFTER exit
             processQueue();
 
-        }, 500); // match your CSS transition time
+        }, 500);
 
-    }, 3500); // 👈 MAIN DISPLAY TIME (tune this: 3000–4500)
+    }, 3500);
 }
 
 
@@ -72,19 +77,23 @@ function detectWipe(oldData, newData) {
 
         if (!oldTeam) return;
 
-        // wipe condition
         if (oldTeam.ALIVE > 0 && newTeam.ALIVE === 0) {
             console.log(`💀 TEAM WIPE: ${newTeam.TEAM}`);
 
-            // add to queue
-            wipeQueue.push(newTeam.TEAM);
+            // 🔥 CALCULATE PLACEMENT
+            const aliveTeams = newData.filter(t => t.ALIVE > 0).length;
+            const placement = aliveTeams + 1;
 
-            // start queue processing
+            // 🔥 PUSH OBJECT INTO QUEUE
+            wipeQueue.push({
+                name: newTeam.TEAM,
+                placement: placement
+            });
+
             processQueue();
         }
     });
 }
-
 
 // 🔹 RENDER SCOREBOARD (SORTED VIEW)
 function render(teams) {
