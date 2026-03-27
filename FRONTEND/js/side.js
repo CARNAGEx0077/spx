@@ -70,7 +70,6 @@ function showWipeCard(teamName, placement) {
 }
 
 
-// 🔥 DETECT TEAM WIPE (RAW DATA COMPARISON)
 function detectWipe(oldData, newData) {
     newData.forEach(newTeam => {
         const oldTeam = oldData.find(t => t.TEAM === newTeam.TEAM);
@@ -80,7 +79,8 @@ function detectWipe(oldData, newData) {
         const oldAlive = Number(oldTeam.ALIVE);
         const newAlive = Number(newTeam.ALIVE);
 
-        if (oldAlive > 0 && newAlive === 0) {
+        // 🔥 STRONG DETECTION
+        if (newAlive === 0 && oldAlive !== 0) {
             console.log(`💀 TEAM WIPE: ${newTeam.TEAM}`);
 
             const aliveTeams = newData.filter(t => Number(t.ALIVE) > 0).length;
@@ -95,7 +95,6 @@ function detectWipe(oldData, newData) {
         }
     });
 }
-
 // 🔹 RENDER SCOREBOARD (SORTED VIEW)
 function render(teams) {
     teamsList.innerHTML = "";
@@ -156,7 +155,7 @@ async function fetchData() {
 
 
 // 🔁 AUTO LOOP
-setInterval(fetchData, 700);
+setInterval(fetchData, 1000);
 
 // INITIAL LOAD
 fetchData();
