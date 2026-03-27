@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Live Ranking Overlay</title>
+    <link rel="stylesheet" href="css/side.css">
+</head>
+<body>
+
+<div id="overlay">
+    <div class="scoreboard">
+        <div class="header">
+            <div class="live-indicator">
+                <span class="pulse"></span>
+                LIVE RANKING
+            </div>
+        </div>
+        <div class="table-header">
+            <span class="col-rank">RANK</span>
+            <span class="col-team">TEAM</span>
+            <span class="col-pts">PTS</span>
+            <span class="col-alive">ALIVE</span>
+            <span class="col-elims">ELIMS</span>
+        </div>
+        <div class="teams-container" id="teamsList"></div>
+    </div>
+    <div class="wipe-card hidden" id="wipeCard">
+    <div class="wipe-header">
+        <div class="wipe-title">TEAM ELIMINATED</div>
+    </div>
+    <div class="wipe-body">
+        <div class="wipe-logo">⚔️</div>
+        <div class="wipe-team" id="wipeTeamName">ASSASIAN ARMY</div>
+    </div>
+    <div class="wipe-footer">
+        <div class="wipe-placement">PLACEMENT <span>#12</span></div>
+    </div>
+</div>
+</div>
+
+<script src="js/side.js"></script>
+</body>
+</html>

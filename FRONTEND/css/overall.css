@@ -1,0 +1,59 @@
+body {
+    margin: 0;
+    background: transparent;
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* 🎯 CANVAS */
+.canvas {
+    width: 1920px;
+    height: 1080px;
+    position: relative;
+}
+
+/* 🔴 ROW */
+.row {
+    position: absolute;
+
+    left: 1025px;        /* 🔥 MAIN HORIZONTAL ALIGN */
+    width: 800px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* 📍 COLUMNS */
+.team {
+    width: 300px;
+    padding-left: 20px;
+}
+
+.win {
+    width: 110px;
+    text-align: center;
+}
+
+.points {
+    width: 130px;
+    text-align: center;
+}
+
+.kills {
+    width: 110px;
+    text-align: center;
+}
+
+.total {
+    width: 130px;
+    text-align: center;
+}
+
+/* 🔍 DEBUG MODE (REMOVE LATER) 
+.row div {
+    border: 1px solid rgba(255,255,255,0.2);
+}*/
