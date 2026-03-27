@@ -77,14 +77,15 @@ function detectWipe(oldData, newData) {
 
         if (!oldTeam) return;
 
-        if (oldTeam.ALIVE > 0 && newTeam.ALIVE === 0) {
+        const oldAlive = Number(oldTeam.ALIVE);
+        const newAlive = Number(newTeam.ALIVE);
+
+        if (oldAlive > 0 && newAlive === 0) {
             console.log(`💀 TEAM WIPE: ${newTeam.TEAM}`);
 
-            // 🔥 CALCULATE PLACEMENT
-            const aliveTeams = newData.filter(t => t.ALIVE > 0).length;
+            const aliveTeams = newData.filter(t => Number(t.ALIVE) > 0).length;
             const placement = aliveTeams + 1;
 
-            // 🔥 PUSH OBJECT INTO QUEUE
             wipeQueue.push({
                 name: newTeam.TEAM,
                 placement: placement
