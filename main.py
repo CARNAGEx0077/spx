@@ -2,6 +2,12 @@ from flask import Flask, jsonify
 import requests
 from flask_cors import CORS
 import time
+import os
+from dotenv import load_dotenv
+
+
+
+
 
 app = Flask(__name__)
 CORS(app)
@@ -9,9 +15,11 @@ CORS(app)
 # ============================================
 # 🔑 CONFIG (REPLACE THESE)
 # ============================================
+load_dotenv()
 
-API_KEY = "AIzaSyBY0F5r-oBqIY_F5GhlV5tLwPQAZEpPZWU"
-SHEET_ID = "1qIjfyqKEpp8XHKQL7yBAkTCSEXFKVfQrjq2mNXatC04"
+API_KEY = os.getenv("GOOGLE_API_KEY")
+SHEET_ID = os.getenv("SHEET_ID")
+
 
 # Sheet ranges (MATCH YOUR TAB NAMES EXACTLY)
 SIDE_RANGE = "sidedata!A:D"
