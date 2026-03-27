@@ -44,7 +44,7 @@ function showWipeCard(teamName, placement) {
     placementEl.innerText = `#${placement}`;
 
     // 🔥 SET TEAM LOGO
-    logo.src = `js/images/${teamName}.png`;
+    logo.src = `/js/images/${teamName}.png`;
     logo.onerror = () => {
         logo.src = "images/default.png";
     };
